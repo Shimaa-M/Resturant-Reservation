@@ -6,7 +6,7 @@ const AppError = require('../utils/appError');
 
 
 exports.getMyReservation = catchAsync(async (req, res, next) => {
-  // 1) Get reservations data from collection
+  // 1) Get reservation data from collection
   const reservations = await Reservation.find({user:req.user.id}).populate({
     path: 'user',
     fields: 'name mobile'
@@ -20,7 +20,7 @@ exports.getMyReservation = catchAsync(async (req, res, next) => {
 });
 
 exports.getAdminReservation = catchAsync(async (req, res, next) => {
-  // 1) Get reservations data from collection
+  // 1) Get reservation data from collection
   const reservations = await Reservation.find().populate({
     path: 'user',
     fields: 'name mobile'
@@ -40,7 +40,7 @@ exports.getLoginForm = (req, res) => {
 };
 
 exports.getReserveForm = catchAsync(async (req, res, next) => {
-  // 1) Get reservations data from collection
+  // 1) Get tour reservation from collection
   const userId = req.user;
   res.status(200).render('reserve', {
     title: 'Reserve your next visit'
@@ -59,4 +59,4 @@ exports.getSignupForm = (req, res) => {
   res.status(200).render('signup', {
     title: 'Sign Up'
   });
-}
+};
