@@ -1,0 +1,42 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'side-nav--active' : ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/spoon`)
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('/my-reservations', 'My Reservations', 'settings' )
+          
+
+        - if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem('/admin-reservations', 'Manage Reservations', 'map')
+              
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md All Reservations
+          
+          .card
+            .card__header
+              each reservation in reservations
+                h3
+                  h2= `${reservation.user.name}`
+                  h4= `Number of Guests: ${reservation.guests}`
+                  h4= `Desired dishes: ${reservation.menu}`
+                  h4= `Happy meal: ${reservation.kids}`
+                  h4= `Reservation date: ${reservation.bookedAt}`
+                button.nav__search-btn#delete-reservation(value=`${reservation.id}`)
+                  svg
+                    use(xlink:href='/img/icons.svg#icon-delete')
+                  
+            

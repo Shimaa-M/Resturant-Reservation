@@ -1,0 +1,56 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'side-nav--active' : ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/spoon`)
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('/my-reservations', 'My Reservations', 'settings' )
+
+        if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem('/admin-reservations', 'Manage Reservations', 'map')
+              
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Reservation Form, Please Fill your request
+          
+          //- WITHOUT API
+          //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype='multipart/form-data')
+          
+          //- WITH API
+          form.form.form-user-data
+            .form__group
+              label.form__label(for='guests') Number of guests 
+              input#guests.form__input(type='text', required, name='guests')
+            .form__group.ma-bt-md
+              label.form__label(for='bookedAt') When you need to reserve
+              e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()))
+            .form__group
+              label.form__label(for='Menu') Desired Dishes
+              select#menu.form__input(name='menu')
+                each val in ['appetizers','soup', 'main dishes', 'salads', 'desserts'] 
+                  | #{val}
+                  option=val
+                  h1= ` Your option is ${option} `     
+            .form__group
+              label.form__label(for='kids') kids meal 
+              input#kids.form__input(type='text', name='kids')    
+            
+              
+            .form__group.right
+              button.btn.btn--small.btn--green Reserve Now!
+              
+        .line &nbsp;
+        
+        
