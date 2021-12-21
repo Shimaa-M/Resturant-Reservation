@@ -40,7 +40,7 @@ exports.getLoginForm = (req, res) => {
 };
 
 exports.getReserveForm = catchAsync(async (req, res, next) => {
-  // 1) Get tour reservation from collection
+  // 1) Get reservation from collection
   const userId = req.user;
   res.status(200).render('reserve', {
     title: 'Reserve your next visit'

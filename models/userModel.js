@@ -3,7 +3,6 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const mongooseIntlPhoneNumber = require('mongoose-intl-phone-number');
 const { Number } = require('mongoose');
 const userSchema = new mongoose.Schema({
   name: {
@@ -63,11 +62,6 @@ const userSchema = new mongoose.Schema({
 }
 );
 
-// userSchema.virtual('reservations', {
-//   ref: 'Reservation',
-//   foreignField: 'user',
-//   localField: '_id'
-// });
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
