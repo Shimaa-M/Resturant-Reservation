@@ -9,17 +9,19 @@ exports.setUserIds = (req, res, next) => {
 };
 
 exports.createReservation= catchAsync(async (req, res, next) => {
-    const newReservation = await Reservation.create(req.body);
-  const userId = req.user._id
-  console.log(`current user ${userId}`);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        reservation: newReservation
-       
-      }
+     await Reservation.create({
+      guests: req.body.guests,
+      user: req.user._id,
+      bookedAt: req.body.bookedAt,
+      menu: req.body.menu,
+      kids: req.body.kids 
     });
+     const userId = req.user._id
+     console.log(`kids ${kids}`)
+    res.status(201).json({status: 'success'});
   });
+
+
   exports.getAllReservations = catchAsync(async (req, res, next) => {
     const reservations = await Reservation.find().populate({
       path: 'user',
