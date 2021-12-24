@@ -57928,7 +57928,7 @@ var deleteReservation = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
-            URL = "/api/v1/reservations/reserve/".concat(id);
+            URL = "/api/v1/reservations/".concat(id);
             _context5.next = 4;
             return _axios.default.delete(URL, {
               id: id
@@ -57936,28 +57936,24 @@ var deleteReservation = /*#__PURE__*/function () {
 
           case 4:
             res = _context5.sent;
-
-            if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'Successfully deleted!');
-              window.setTimeout(function () {
-                location.assign('/admin-reservations');
-              }, 500);
-            }
-
-            _context5.next = 11;
+            (0, _alerts.showAlert)('success', 'Successfully deleted!');
+            window.setTimeout(function () {
+              location.assign('/admin-reservations');
+            }, 500);
+            _context5.next = 12;
             break;
 
-          case 8:
-            _context5.prev = 8;
+          case 9:
+            _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
             (0, _alerts.showAlert)('error', _context5.t0.message);
 
-          case 11:
+          case 12:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 8]]);
+    }, _callee5, null, [[0, 9]]);
   }));
 
   return function deleteReservation(_x12) {

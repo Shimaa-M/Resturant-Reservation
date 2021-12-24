@@ -36,7 +36,7 @@ exports.createReservation= catchAsync(async (req, res, next) => {
     });
   });
   exports.deleteReservation = catchAsync(async (req, res, next) => {
-    console.log('right url')
+    
     const reservation = await Reservation.findByIdAndDelete(req.params.id);
   
     if (!reservation) {
@@ -47,4 +47,5 @@ exports.createReservation= catchAsync(async (req, res, next) => {
       status: 'success',
       data: null
     });
+    
   });

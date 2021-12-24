@@ -96,14 +96,14 @@ export const reserve = async (guests,bookedAt ,menu,kids_ ) => {
 
 export const deleteReservation = async (id) => {
   try{
-const URL =  `/api/v1/reservations/reserve/${id}`;
+const URL =  `/api/v1/reservations/${id}`;
 const res=await axios.delete(URL,{id});
-if (res.data.status === 'success') {
+
   showAlert('success', 'Successfully deleted!');
   window.setTimeout(() => {
     location.assign('/admin-reservations');
   }, 500);
-}
+
 } catch (err) {
 showAlert('error', err.message);
 }
