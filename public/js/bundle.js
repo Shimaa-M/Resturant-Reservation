@@ -57813,27 +57813,28 @@ var logout = /*#__PURE__*/function () {
 exports.logout = logout;
 
 var signup = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name, email, mobile, password, passwordConfirm) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name, email, Mobile, password, passwordConfirm) {
     var res;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            console.log("mobile: ".concat(Mobile));
+            _context3.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: '/api/v1/users/signup',
               data: {
                 name: name,
                 email: email,
-                mobile: mobile,
+                mobile: Mobile,
                 password: password,
                 passwordConfirm: passwordConfirm
               }
             });
 
-          case 3:
+          case 4:
             res = _context3.sent;
 
             if (res.data.status === 'success') {
@@ -57843,20 +57844,20 @@ var signup = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context3.next = 10;
+            _context3.next = 11;
             break;
 
-          case 7:
-            _context3.prev = 7;
+          case 8:
+            _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
             (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[0, 8]]);
   }));
 
   return function signup(_x3, _x4, _x5, _x6, _x7) {
@@ -57867,15 +57868,14 @@ var signup = /*#__PURE__*/function () {
 exports.signup = signup;
 
 var reserve = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(guests, bookedAt, menu, kids_) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(guests, bookedAt, menu, kids) {
     var res;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            console.log('helo reserve');
-            _context4.next = 4;
+            _context4.next = 3;
             return (0, _axios.default)({
               method: 'POST',
               url: '/api/v1/reservations/reserve',
@@ -57883,11 +57883,11 @@ var reserve = /*#__PURE__*/function () {
                 guests: guests,
                 bookedAt: bookedAt,
                 menu: menu,
-                kids_: kids_
+                kids: kids
               }
             });
 
-          case 4:
+          case 3:
             res = _context4.sent;
 
             if (res.data.status === 'success') {
@@ -57897,20 +57897,20 @@ var reserve = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context4.next = 11;
+            _context4.next = 10;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 7:
+            _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
             (0, _alerts.showAlert)('error', _context4.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 7]]);
   }));
 
   return function reserve(_x8, _x9, _x10, _x11) {
@@ -58264,7 +58264,7 @@ if (signupForm) signupForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
-  var mobile = document.getElementById('mobile').value;
+  var mobile = document.getElementById('Mobile').value.toString();
   var password = document.getElementById('password').value;
   var passwordConfirm = document.getElementById('passwordConfirm').value;
   (0, _login.signup)(name, email, mobile, password, passwordConfirm);
@@ -58283,7 +58283,6 @@ if (deleteBtn) {
       var button = _step.value;
       button.addEventListener('click', function (e) {
         var id = button.value;
-        console.log("id: ".concat(id));
         (0, _login.deleteReservation)(id);
       });
     };
@@ -58296,16 +58295,11 @@ if (deleteBtn) {
   } finally {
     _iterator.f();
   }
-} // if (deleteBtn) deleteBtn.addEventListener('click',e=> {
-//   const id=deleteBtn.value;
-//   console.log(`id: ${id}`)
-//   deleteReservation()
-// });
-
+}
 
 if (userDataForm) userDataForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var guests, bookedAt, menu, kids_;
+    var guests, bookedAt, menu, kids;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -58314,9 +58308,9 @@ if (userDataForm) userDataForm.addEventListener('submit', /*#__PURE__*/function 
             guests = document.getElementById('guests').value;
             bookedAt = document.getElementById('bookedAt').value;
             menu = document.getElementById('menu').value;
-            kids_ = document.getElementById('kids').value;
-            console.log(kids_);
-            (0, _login.reserve)(guests, bookedAt, menu, kids_);
+            kids = document.getElementById('kids').value;
+            console.log(kids);
+            (0, _login.reserve)(guests, bookedAt, menu, kids);
 
           case 7:
           case "end":
@@ -58360,7 +58354,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49345" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58617" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

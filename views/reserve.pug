@@ -30,27 +30,21 @@ block content
           
           //- WITH API
           form.form.form-user-data
-            .form__group
+            div.form__group
               label.form__label(for='guests') Number of guests 
               input#guests.form__input(type='text', required, name='guests')
-            .form__group.ma-bt-md
               label.form__label(for='bookedAt') When you need to reserve
               e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()))
-            .form__group
               label.form__label(for='Menu') Desired Dishes
               select#menu.form__input(name='menu')
                 each val in ['appetizers','soup', 'main dishes', 'salads', 'desserts'] 
                   option=val
-              
-            .form__group
               label.form__label(for='kids') kids Chair 
               input#kids.form__input(type='text',required, name='kids')    
-              
-            .form__group.right
-              button.btn.btn--small.btn--green Reserve Now!
-        script. 
-          var currentuser = document.getElementById("menu").value 
-            span= `${currentuser}`      
+            button.btn.btn--small.btn--green Reserve Now!
+          script. 
+            var currentuser = document.getElementById("menu").value 
+              span= `${currentuser}`      
               
         .line &nbsp;
         

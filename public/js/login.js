@@ -43,15 +43,16 @@ export const logout = async () => {
 };
 
 
-export const signup = async (name ,email,mobile, password,passwordConfirm ) => {
-  try {
+export const signup = async (name ,email,Mobile, password,passwordConfirm ) => {
+  try {console.log(`mobile: ${Mobile}`);
     const res = await axios({
+      
       method: 'POST',
       url: '/api/v1/users/signup',
       data: {
         name,
         email,
-        mobile,
+        mobile:Mobile,
         password,
         passwordConfirm
       }
@@ -68,9 +69,8 @@ export const signup = async (name ,email,mobile, password,passwordConfirm ) => {
   }
 };
 
-export const reserve = async (guests,bookedAt ,menu,kids_ ) => {
+export const reserve = async (guests,bookedAt ,menu,kids ) => {
   try {
-    console.log('helo reserve')
     const res = await axios({
       method: 'POST',
       url: '/api/v1/reservations/reserve',
@@ -78,7 +78,7 @@ export const reserve = async (guests,bookedAt ,menu,kids_ ) => {
         guests,
         bookedAt,
         menu,
-        kids_
+        kids
       }
     });
   

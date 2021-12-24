@@ -5,20 +5,15 @@ block content
     .signup-form
       h2.heading-secondary.ma-bt-lg Sign Up for free
       form.form.form--signup
-        .form__group
+        div.form__group
           label.form__label(for='name') Your Name
-          input#name.form__input(type='String', placeholder='Shimaa Mahmoud', required)
-        .form__group
+          input#name.form__input(type='text', placeholder='Shimaa Mahmoud', required)
           label.form__label(for='email') Email address
           input#email.form__input(type='email', placeholder='you@example.com', required)
-          .form__group
           label.form__label(for='mobile') Mobile
-          input#mobile.form__input(type='Number', placeholder='1x xxx xxx xx', required)
-        .form__group.ma-bt-md
+          input#Mobile.form__input(type='text', placeholder='01x xxx xxx xx', required)
           label.form__label(for='password') Password
           input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-        .form__group.ma-bt-md
           label.form__label(for='passwordConfirm') Confirm Password
           input#passwordConfirm.form__input(type='password', placeholder='••••••••', required )
-        .form__group
-          button.btn.btn--green Sign Up
+        button.btn.btn--green Sign Up

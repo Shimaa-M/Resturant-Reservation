@@ -30,7 +30,7 @@ block content
             .card__header
               each reservation in reservations
                 h3
-                  h2= `${reservation.user.name} |0${reservation.user.mobile}`
+                  h2= `${reservation.user.name} |${reservation.user.mobile}`
                   h4= `Number of Guests: ${reservation.guests}`
                   h4= `Desired dishes: ${reservation.menu}`
                   h4= `kids Chair: ${reservation.kids}`

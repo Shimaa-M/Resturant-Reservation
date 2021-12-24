@@ -9,15 +9,15 @@ exports.setUserIds = (req, res, next) => {
 };
 
 exports.createReservation= catchAsync(async (req, res, next) => {
+  console.log(`kids ${req.body.kids}`)
      await Reservation.create({
+
       guests: req.body.guests,
       user: req.user._id,
       bookedAt: req.body.bookedAt,
       menu: req.body.menu,
       kids: req.body.kids 
-    });
-     const userId = req.user._id
-     console.log(`kids ${kids}`)
+    });   
     res.status(201).json({status: 'success'});
   });
 

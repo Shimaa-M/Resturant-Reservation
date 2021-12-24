@@ -30,13 +30,10 @@ block content
             .card__header
               each reservation in reservations
                 h3
-                  h2= `${reservation.user.name}`
+                  h2= `${reservation.user.name} |${reservation.user.mobile}`
                   h4= `Number of Guests: ${reservation.guests}`
                   h4= `Desired dishes: ${reservation.menu}`
                   h4= `kids Chair: ${reservation.kids}`
                   h4= `Reservation date: ${reservation.bookedAt}`
-                //-button.nav__search-btn(value=`${reservation.id}`)
-                  svg
-                    use(xlink:href='/img/icons.svg#icon-delete')
                   
             

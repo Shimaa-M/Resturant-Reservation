@@ -38,7 +38,7 @@ if (loginForm)
     e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const mobile = document.getElementById('mobile').value;
+    const mobile = document.getElementById('Mobile').value.toString();
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
     signup(name,email,mobile, password,passwordConfirm);
@@ -54,17 +54,11 @@ if (logOutBtn) logOutBtn.addEventListener('click',e=> {
   for (const button of deleteBtn) {
     button.addEventListener('click', e => {
       const id=button.value;
-      console.log(`id: ${id}`)
       deleteReservation(id);
     });
   }
 }
-// if (deleteBtn) deleteBtn.addEventListener('click',e=> {
-  
-//   const id=deleteBtn.value;
-//   console.log(`id: ${id}`)
-//   deleteReservation()
-// });
+
 
 if (userDataForm)
   userDataForm.addEventListener('submit',async e => {
@@ -72,10 +66,10 @@ if (userDataForm)
     const guests = document.getElementById('guests').value;
     const bookedAt = document.getElementById('bookedAt').value;  
     const menu = document.getElementById('menu').value;
-    const kids_ = document.getElementById('kids').value;
+    const kids = document.getElementById('kids').value;
     
-    console.log(kids_);
-    reserve(guests,bookedAt,menu,kids_ );
+    console.log(kids);
+    reserve(guests,bookedAt,menu,kids);
   });
 
 const alertMessage = document.querySelector('body').dataset.alert;
