@@ -10,15 +10,13 @@ const router = express.Router();
 router.use(authController.protect);
 router
   .route('/reserve')
-  .post(reservationController.setTourUserIds,reservationController.createReservation)
+  .post(reservationController.setUserIds,reservationController.createReservation)
   .get(authController.restrictTo('admin'),reservationController.getAllReservations);
 
 
  router
   
-//   .route('/:id')
-//   .get(reservationController.getBooking)
-//   .patch(reservationController.updateBooking)
-//   .delete(reservationController.deleteBooking);
+   .route('/:id')
+   .delete(reservationController.deleteReservation);
 
 module.exports = router;

@@ -11,7 +11,7 @@ const signupForm = document.querySelector('.form--signup');
 const tokenForm = document.querySelector('.form--token');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
-const deleteBtn = document.querySelector('nav__search-btn');
+const deleteBtn = document.querySelectorAll('.nav__search-btn');
 const userDataForm = document.querySelector('.user-view__form-container');
 
 // DELEGATION
@@ -19,7 +19,6 @@ const userDataForm = document.querySelector('.user-view__form-container');
 if (loginForm)
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
-    console.log('Welcome');
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
@@ -47,25 +46,36 @@ if (loginForm)
 
 
 
-if (logOutBtn) logOutBtn.addEventListener('click', logout);
+if (logOutBtn) logOutBtn.addEventListener('click',e=> {
+  console.log('logout');
+  logout()});
 
-if (deleteBtn) deleteBtn.addEventListener('click',e=> {
-  e.preventDefault();
-  const id=e.value;
-  console.log(`id: ${id}`)
-  deleteReservation()
-});
+  if (deleteBtn){
+  for (const button of deleteBtn) {
+    button.addEventListener('click', e => {
+      const id=button.value;
+      console.log(`id: ${id}`)
+      deleteReservation(id);
+    });
+  }
+}
+// if (deleteBtn) deleteBtn.addEventListener('click',e=> {
+  
+//   const id=deleteBtn.value;
+//   console.log(`id: ${id}`)
+//   deleteReservation()
+// });
 
 if (userDataForm)
   userDataForm.addEventListener('submit',async e => {
     e.preventDefault();
-    console.log(e.value);
-
     const guests = document.getElementById('guests').value;
-    const menu = document.getElementById('menu').value;
-    const kids = document.getElementById('kids').value;
     const bookedAt = document.getElementById('bookedAt').value;  
-    reserve(guests,bookedAt,menu,kids );
+    const menu = document.getElementById('menu').value;
+    const kids_ = document.getElementById('kids').value;
+    
+    console.log(kids_);
+    reserve(guests,bookedAt,menu,kids_ );
   });
 
 const alertMessage = document.querySelector('body').dataset.alert;

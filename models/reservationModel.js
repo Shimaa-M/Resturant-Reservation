@@ -11,18 +11,15 @@ const reservationSchema = new mongoose.Schema({
     ref: 'User',
     required: [true, 'Reservation must belong to a User!']
   },
-  Kids:{ 
+  bookedAt: {
     type: String,
-    default: ''
+    required:[true,'please select a date']
   },
   menu: {
     type: String,
     require: [true, 'Please enter your choices.']
   },
-   bookedAt: {
-    type: String,
-    required:[true,'please select a date']
-  },
+  Kids: String,
   createdAt: {
     type: Date,
     default: Date.now()

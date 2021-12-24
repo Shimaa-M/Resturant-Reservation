@@ -2,12 +2,9 @@
 import axios from 'axios';
 import crypto from 'crypto';
 import { showAlert } from './alerts';
-import { User } from './../../models/userModel.js';
-import { AppError } from './../../utils/appError';
-import Reservation from '../../models/reservationModel';
 
 export const login = async (email, password) => {
-  console.log('hello');
+ 
   try {
     const res = await axios({
       method: 'POST',
@@ -19,7 +16,7 @@ export const login = async (email, password) => {
     });
 
     if (res.data.status === 'success') {
-      console.log('hi');
+     
       showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
         location.assign('/');
@@ -71,9 +68,9 @@ export const signup = async (name ,email,mobile, password,passwordConfirm ) => {
   }
 };
 
-export const reserve = async (guests,bookedAt ,menu,kids ) => {
+export const reserve = async (guests,bookedAt ,menu,kids_ ) => {
   try {
-    console.log(`reserved at ${bookedAt}`)
+    console.log('helo reserve')
     const res = await axios({
       method: 'POST',
       url: '/api/v1/reservations/reserve',
@@ -81,7 +78,7 @@ export const reserve = async (guests,bookedAt ,menu,kids ) => {
         guests,
         bookedAt,
         menu,
-        kids
+        kids_
       }
     });
   
@@ -97,8 +94,19 @@ export const reserve = async (guests,bookedAt ,menu,kids ) => {
 };
 
 
-export const deleteReservation = async () => {
-console.log('welcome delete');
+export const deleteReservation = async (id) => {
+  try{
+const URL =  `/api/v1/reservations/reserve/${id}`;
+const res=await axios.delete(URL,{id});
+if (res.data.status === 'success') {
+  showAlert('success', 'Successfully deleted!');
+  window.setTimeout(() => {
+    location.assign('/admin-reservations');
+  }, 500);
+}
+} catch (err) {
+showAlert('error', err.message);
+}
 }
 
 

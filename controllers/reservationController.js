@@ -2,7 +2,7 @@
 const Reservation = require('../models/reservationModel');
 const catchAsync = require('../utils/catchAsync');
 
-exports.setTourUserIds = (req, res, next) => {
+exports.setUserIds = (req, res, next) => {
   // Allow nested routes
   if (!req.body.user) req.body.user = req.user.id;
   next();
@@ -33,5 +33,18 @@ exports.createReservation= catchAsync(async (req, res, next) => {
         reservations,
   
       }
+    });
+  });
+  exports.deleteReservation = catchAsync(async (req, res, next) => {
+    console.log('right url')
+    const reservation = await Reservation.findByIdAndDelete(req.params.id);
+  
+    if (!reservation) {
+      return next(new AppError('No reservation found with that ID', 404));
+    }
+  
+    res.status(204).json({
+      status: 'success',
+      data: null
     });
   });

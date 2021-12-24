@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const { Number } = require('mongoose');
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -16,10 +16,8 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
    validate: [validator.isEmail, 'Please provide a valid email']
   },
-  mobile: { 
-    type: Number, 
-    default: "11122233333" 
-  },
+  mobile:  String
+ ,
   role: {
     type: String,
     enum: ['user', 'admin'],
