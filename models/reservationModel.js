@@ -17,9 +17,9 @@ const reservationSchema = new mongoose.Schema({
   },
   menu: {
     type: String,
-    require: [true, 'Please enter your choices.']
+    required: [true, 'Please enter your choices.']
   },
-  Kids: String,
+  kids: String,
   createdAt: {
     type: Date,
     default: Date.now()
