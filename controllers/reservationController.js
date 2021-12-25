@@ -9,9 +9,8 @@ exports.setUserIds = (req, res, next) => {
 };
 
 exports.createReservation= catchAsync(async (req, res, next) => {
-  console.log(`kids ${req.body.kids}`)
+  
      await Reservation.create({
-
       guests: req.body.guests,
       user: req.user._id,
       bookedAt: req.body.bookedAt,
@@ -37,6 +36,8 @@ exports.createReservation= catchAsync(async (req, res, next) => {
       }
     });
   });
+
+  
   exports.deleteReservation = catchAsync(async (req, res, next) => {
     
     const reservation = await Reservation.findByIdAndDelete(req.params.id);

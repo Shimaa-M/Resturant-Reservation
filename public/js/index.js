@@ -3,6 +3,7 @@ import '@babel/polyfill';
 
 import {signup, login, logout,confirmToken,reserve,deleteReservation} from './login';
 import { showAlert } from './alerts';
+const moment = require('moment');
 
 
 // DOM ELEMENTS
@@ -64,11 +65,13 @@ if (userDataForm)
   userDataForm.addEventListener('submit',async e => {
     e.preventDefault();
     const guests = document.getElementById('guests').value;
-    const bookedAt = document.getElementById('bookedAt').value;  
-    const menu = document.getElementById('menu').value;
+    const bookedAt_= document.getElementById('bookedAt').value;
+    const bookedAt= moment(bookedAt_).format("MM/DD/YYYY HH:mm:ss")
+    const menu_ = document.getElementById('menu-selections').innerText;
+    const menu= menu_.slice(0,menu_.length-1);
     const kids = document.getElementById('kids').value;
     
-    console.log(kids);
+    console.log(bookedAt);
     reserve(guests,bookedAt,menu,kids);
   });
 

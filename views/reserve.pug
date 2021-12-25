@@ -1,5 +1,5 @@
 extends base
-
+  
 mixin navItem(link, text, icon, active)
   li(class=`${active ? 'side-nav--active' : ''}`)
     a(href=`${link}`)
@@ -31,21 +31,25 @@ block content
           //- WITH API
           form.form.form-user-data
             div.form__group
+              
               label.form__label(for='guests') Number of guests 
               input#guests.form__input(type='text', required, name='guests')
               label.form__label(for='bookedAt') When you need to reserve
               e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()))
               label.form__label(for='Menu') Desired Dishes
-              select#menu.form__input(name='menu')
-                each val in ['appetizers','soup', 'main dishes', 'salads', 'desserts'] 
+              select#menu.form__input(name='menu' onchange='copy();' )
+                each val in ['appetizers ','soup ', 'main dishes ', 'salads ', 'desserts '] 
                   option=val
+              h5#menu-selections    
               label.form__label(for='kids') kids Chair 
-              input#kids.form__input(type='text',required, name='kids')    
+              input#kids.form__input(type='text', name='kids')    
             button.btn.btn--small.btn--green Reserve Now!
-          script. 
-            var currentuser = document.getElementById("menu").value 
-              span= `${currentuser}`      
+            script. 
+                  function copy() {
+                    document.getElementById("menu-selections").innerHTML += document.getElementById("menu").value+','
+                  } 
+        
               
-        .line &nbsp;
+        
         
         
