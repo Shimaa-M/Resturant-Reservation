@@ -37,7 +37,7 @@ block content
               label.form__label(for='bookedAt') When you need to reserve
               e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()))
               label.form__label(for='Menu') Desired Dishes
-              select#menu.form__input(name='menu' onchange='copy();' )
+              select#menu.form__input(name='menu', onchange='copy();' ,required)
                 each val in ['appetizers ','soup ', 'main dishes ', 'salads ', 'desserts '] 
                   option=val
               h5#menu-selections    
