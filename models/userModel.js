@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
   },
   mobile:{ 
     type: String,
-    required : [true , 'please enter your phone']
+    required : [true , 'please enter your phone'],
+    match: /^(\()?\d{11}$/,
    } ,
   role: {
     type: String,

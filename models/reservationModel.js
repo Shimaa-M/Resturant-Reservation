@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const reservationSchema = new mongoose.Schema({
   guests: {
     type: Number,
-    required: [true, 'Please enter number of guests!']
+    required: [true, 'Please enter number of guests!'],
+    min: 1,
+    validate : {
+      validator : Number.isInteger,
+      message   : '{VALUE} is not an integer value'
+    }
   },
   user: {
     type: mongoose.Schema.ObjectId,
