@@ -8,7 +8,7 @@ const router = express.Router();
 const app = express();
 app.disable('etag');
 router.get('/', authController.isLoggedIn, viewsController.getHome);
-router.get('/reserve', authController.isLoggedIn, viewsController.getReserveForm);
+router.get('/reserve', authController.isLoggedIn,authController.protect, viewsController.getReserveForm);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
  router.get('/signup',  viewsController.getSignupForm);
  router.get('/logout', authController.logout);

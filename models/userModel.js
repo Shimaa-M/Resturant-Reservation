@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Please provide your email'],
-    unique: true,
+    unique: [true,'Duplicated email'],
     lowercase: true,
    validate: [validator.isEmail, 'Please provide a valid email']
   },
@@ -24,12 +24,13 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['user', 'admin'],
-    default: 'user'
+    default: 'admin'
   },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 8,
+    maxlength: 16,
     select: false
   },
   passwordConfirm: {

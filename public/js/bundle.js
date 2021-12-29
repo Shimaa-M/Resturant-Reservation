@@ -63984,13 +63984,23 @@ if (userDataForm) userDataForm.addEventListener('submit', /*#__PURE__*/function 
             guests = document.getElementById('guests').value;
             bookedAt_ = document.getElementById('bookedAt').value;
             bookedAt = moment(bookedAt_).format("MM/DD/YYYY HH:mm:ss");
+
+            if (!(bookedAt == "Invalid date")) {
+              _context.next = 7;
+              break;
+            }
+
+            (0, _alerts.showAlert)('error', 'Please enter valid date', 20);
+            return _context.abrupt("return");
+
+          case 7:
             menu_ = document.getElementById('menu-selections').innerText;
             menu = menu_.slice(0, menu_.length - 1);
             kids = document.getElementById('kids').value;
             console.log(bookedAt);
             (0, _login.reserve)(guests, bookedAt, menu, kids);
 
-          case 9:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -64032,7 +64042,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55102" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51744" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

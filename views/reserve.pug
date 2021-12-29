@@ -31,11 +31,11 @@ block content
           //- WITH API
           form.form.form-user-data
             div.form__group
-              
+                
               label.form__label(for='guests') Number of guests 
               input#guests.form__input(type='text', required, name='guests')
               label.form__label(for='bookedAt') When you need to reserve
-              e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()))
+              e-datetimepicker#bookedAt.form__input(value=new Date(Date.now()),required)
               label.form__label(for='Menu') Desired Dishes
               select#menu.form__input(name='menu', onchange='copy();' ,required)
                 each val in ['appetizers ','soup ', 'main dishes ', 'salads ', 'desserts '] 
@@ -44,10 +44,12 @@ block content
               label.form__label(for='kids') kids Chair 
               input#kids.form__input(type='text', name='kids')    
             button.btn.btn--small.btn--green Reserve Now!
+            
             script. 
                   function copy() {
                     document.getElementById("menu-selections").innerHTML += document.getElementById("menu").value+','
                   } 
+                  
         
               
         

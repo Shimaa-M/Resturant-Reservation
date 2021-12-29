@@ -67,6 +67,10 @@ if (userDataForm)
     const guests = document.getElementById('guests').value;
     const bookedAt_= document.getElementById('bookedAt').value;
     const bookedAt= moment(bookedAt_).format("MM/DD/YYYY HH:mm:ss")
+    if(bookedAt=="Invalid date"){
+      showAlert('error','Please enter valid date',20);
+      return;
+    }
     const menu_ = document.getElementById('menu-selections').innerText;
     const menu= menu_.slice(0,menu_.length-1);
     const kids = document.getElementById('kids').value;
